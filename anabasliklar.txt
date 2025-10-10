@@ -1,0 +1,154 @@
+A. Otonom Uçuş Simülasyonu (MissionPlanner &amp; ArduPilot SITL)
+Görev: MissionPlanner programı üzerinden SITL (Software In The Loop) çalıştırarak sabit
+kanatlı İHA’nın otonom uçuşunu gerçekleştiriniz.
+Uçuş Senaryosu:
+- Sabit kanatlı İHA modeli kullanınız
+- Kalkış işlemi gerçekleştiriniz
+- Belirlenen waypoint’lerden oluşan bir tur uçuşu yapınız
+- Otonom iniş işlemini tamamlayınız
+İstenen Spesifik Komutlar:
+- TAKEOFF
+- WAYPOINT navigasyonu (minimum 4 waypoint)
+- LOITER (belirli bir noktada daire çizme)
+- LAND
+-DO JUMP komutu (örneğin 4. Waypointten son waypointe kadar tekrarlama)
+Teslim Formatı:
+- MissionPlanner’dan alınan video kaydı
+- Uçuş log dosyası (.log formatı)
+- Kullandığınız güzergâh dosyası (.waypoints)
+
+
+
+B. Görüntü İşleme ve Nesne Tespiti (YOLO)
+Görev: YOLO algoritması kullanarak nesne tespit modeli eğitiniz.
+Proje Detayları:
+- Veri Seti: 200-300 adet görsel içeren özel veri seti oluşturunuz (LabelImg
+gibi) etiketleme uygulamaları üzerinden el ile yapılmalıdır.)
+- Hedef Nesne: İnsansız Hava Aracı
+- Model: YOLOv8 veya üst model kullanınız
+Eğitim Süreci:
+- Görüntüleri etiketleyiniz (annotation)
+- Train/Validation/Test setlerine ayırınız (%70/%20/%10)
+- Model eğitimi gerçekleştiriniz
+- Test görüntüleri üzerinde performans değerlendirmesi yapınız
+İstenen Çıktılar:
+- Eğitilmiş model dosyası (.pt formatı)
+- Eğitim sürecini gösteren loss grafikleri
+- Test sonuçlarını gösteren örnek tespit görüntüleri
+- Model performans metrikleri (mAP, Precision, Recall)
+Teslim Formatı:Python script’leri, eğitilmiş model, sonuç raporu (1 sayfa PDF)
+
+
+
+
+
+
+
+
+
+
+C. Kalman Filtreleme ile Hareket Tahmini
+Görev: Kalman filtresi kullanarak basit bir top hareketinin tahminini gerçekleştiriniz.
+Senaryo:
+- 2D düzlemde hareket eden bir topun yörüngesini simüle ediniz
+- Gürültülü sensor ölçümlerini modelleyiniz
+- Kalman filtresi ile gerçek pozisyonu tahmin ediniz
+Teknik Gereksinimler:
+- Python + matplotlib kullanınız
+- Fiziksel hareket modeli (kinematik denklemler)
+- Gürültü eklenmiş ölçüm verileri
+- Kalman filtre algoritması implementasyonu
+İstenen Çıktılar:
+- Gerçek yörünge vs tahmin edilen yörünge grafiği
+- Hata analizi (RMSE hesaplaması)
+- Filtre performansının zaman içindeki değişimi
+Teslim Formatı: Python script’i (.py), çıktı grafikleri (.png), sonuç analizi
+dökümanı (PDF)
+
+
+
+
+
+
+D. Görüntü Stabilizasyonu
+Görev: Yazılımsal optimizasyon ile kamera görüntüsündeki titreşim
+hareketlerini sönümleyiniz.
+Uygulama Detayları:
+- Gerçek kamera feed’i veya test videosu kullanınız
+- Digital Image Stabilization (DIS) algoritması uygulayınız
+- Titreşim tespiti ve kompenzasyon işlemleri
+Teknik Yaklaşım:
+- Optik akış (Optical Flow) tabanlı hareket tespiti
+- Kalman filtresi ile hareket tahmin ve düzeltme
+- Gerçek zamanlı işleme kapasitesi
+İstenen Özellikler:
+- Orijinal ve stabilize edilmiş video karşılaştırması
+- Titreşim azaltma oranının ölçülmesi
+- FPS performans analizi
+Teslim Formatı: Python/C++ kodu, örnek input/output videoları, performans
+raporu (PDF)
+
+
+
+
+
+
+
+
+
+E. GUI Arayüz Programı
+Görev: Komut butonları ve harita entegrasyonu içeren basit bir arayüz programı
+tasarlayınız.
+Arayüz Gereksinimleri:
+- En az 5 farklı komut butonu
+- Her butona basıldığında terminal/console’a bildirim gönderme
+- Harita API entegrasyonu (Google Maps, OpenStreetMap vb.)
+- Kullanıcı dostu tasarım
+Teknik Özellikler:
+- Framework: Tkinter, PyQt, Kivy
+- Harita üzerinde işaretleyici (marker) ekleme/çıkarma
+- GPS koordinat gösterimi
+İstenen Fonksiyonlar:
+- “Kalkış”, “İniş”, “Waypoint Ekle”, “Mission Başlat”, “Acil Durdur” butonları
+- Harita üzerinde tıklanan noktaların koordinatlarını gösterme
+- Basit log sistemi
+Teslim Formatı: Kaynak kodlar, executable dosya (varsa), kullanım kılavuzu
+
+
+
+
+
+
+
+
+Görev: VLC Media Player kullanarak lokal ağda H.264 kodlu canlı video yayını
+gerçekleştiriniz.
+Sistem Kurulumu:
+- Sunucu (Streaming) tarafı: Video kaynağı (kamera/dosya)
+- İstemci (Viewer) tarafı: Video izleyici
+- Protokol: RTSP/RTP veya HTTP streaming
+- Codec: H.264
+Teknik Gereksinimler:
+- VLC command line interface kullanımı
+- IP adres tabanlı bağlantı
+- Minimum gecikme (latency) optimizasyonu
+- Ağ bant genişliği kontrolü
+Test Senaryosu:
+- Aynı ağdaki 2 farklı cihaz arasında streaming
+- Video kalitesi ve gecikme ölçümü
+- Bağlantı kesintilerinde yeniden bağlanma
+
+İstenen Çıktılar:
+- VLC streaming komut satırı script’leri
+- Ağ yapılandırma dökümanı
+- Test sonuçları ve performans metrikleri
+- Sorun giderme kılavuzu
+Teslim Formatı: Kurulum script’leri, yapılandırma dosyaları, test raporu (PDF)
+
+
+
+
+
+
+
+
